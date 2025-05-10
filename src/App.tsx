@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { signUp, respondToNewPasswordChallenge } from "./auth";
 import { useAuth } from "./components/context/AuthContext"; // ✅ Import useAuth()
+import ImageUpload from "./components/forms/ImageUpload";
 
 const App: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
   const [challengeRequired, setChallengeRequired] = useState<boolean>(false);
   const [session, setSession] = useState<string>(""); // Stores Cognito session for password change
-
   const { userAuthenticated, login, signIn, signOut } = useAuth(); // ✅ Get authentication state from context
   const [loginInput, setLoginInput] = useState<string>("");
 
@@ -90,6 +90,7 @@ const App: React.FC = () => {
       ) : (
         <div>
           <h2>Welcome, {login}</h2>
+          <ImageUpload />
           <button onClick={signOut}>Sign Out</button>
         </div>
       )}
